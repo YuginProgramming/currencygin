@@ -88,7 +88,7 @@ const checkPrice = async () => {
 };
 
 // chack the price interval 
-setInterval(checkPrice, 30 * 1000);
+setInterval(checkPrice, 30 * 10000);
 
 // Команда /start — сохраняет chat.id пользователя
 bot.onText(/\/start/, (msg) => {
