@@ -18,7 +18,6 @@ try {
   console.log('users.json не знайдено, створюю новий список');
 }
 
-// Получение цены BTC с сайта Coindesk
 const getBTCPrice = async () => {
   const res = await axios.get('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');
   return parseFloat(res.data.price);
@@ -40,7 +39,7 @@ const checkPrice = async () => {
       const diffBTC = ((currentPriceBTC - lastPriceBTC) / lastPriceBTC) * 100;
       console.log(`Зміна BTC: ${diffBTC.toFixed(2)}%`);
 
-      if (Math.abs(diffBTC) >= 0) {
+      if (Math.abs(diffBTC) >= 0.5) {
         for (let id of userIds) {
           bot.sendMessage(id, `BTC ${diffBTC.toFixed(2)}%: $${currentPriceBTC}`)
             .catch(err => {
@@ -65,7 +64,7 @@ const checkPrice = async () => {
       const diffTON = ((currentPriceTON - lastPriceTON) / lastPriceTON) * 100;
       console.log(`Зміна TON: ${diffTON.toFixed(2)}%`);
 
-      if (Math.abs(diffTON) >= 0) {
+      if (Math.abs(diffTON) >= 0.5) {
         for (let id of userIds) {
           bot.sendMessage(id, `💰 TON ${diffTON.toFixed(2)}%: $${currentPriceTON}`)
             .catch(err => {
